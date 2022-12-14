@@ -5,14 +5,17 @@ import java.util.Objects;
 
 public class Produto {
 
-    private Long id;
-    private String nome;
+	private Long id;
+	private String nome;
 	private String descricao;
 	private BigDecimal valor;
 
 	public Produto(Long id, String nome, String descricao, BigDecimal valor) {
-		//TODO parâmetros não podem ser nulos, deve retornar uma Exception
-		//TODO valor não pode ser menor que 1, deve retornar uma Exception
+		Objects.requireNonNull(id);
+		Objects.requireNonNull(nome);
+		Objects.requireNonNull(descricao);
+		Objects.requireNonNull(valor);
+		validarValor(valor);
 		this.id = id;
 		this.nome = nome;
 		this.descricao = descricao;
@@ -33,6 +36,12 @@ public class Produto {
 
 	public BigDecimal getValor() {
 		return valor;
+	}
+
+	private void validarValor(BigDecimal valor) {
+		if (valor.compareTo(BigDecimal.ONE) < 0) {
+			throw new IllegalArgumentException();
+		}
 	}
 
 	@Override
