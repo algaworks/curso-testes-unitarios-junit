@@ -8,7 +8,7 @@ import org.junit.jupiter.api.Test;
 import java.util.Arrays;
 import java.util.List;
 
-@DisplayNameGeneration(DisplayNameGenerator.Standard.class)
+@DisplayNameGeneration(DisplayNameGenerator.ReplaceUnderscores.class)
 class FiltroNumerosTest {
 
     @Test
