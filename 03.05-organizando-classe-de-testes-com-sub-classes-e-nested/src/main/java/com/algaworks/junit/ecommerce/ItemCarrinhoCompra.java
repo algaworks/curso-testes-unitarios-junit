@@ -5,35 +5,46 @@ import java.util.Objects;
 
 public class ItemCarrinhoCompra {
 
-    private Produto produto;
+    private final Produto produto;
     private int quantidade;
 
     public ItemCarrinhoCompra(Produto produto, int quantidade) {
-        //TODO parâmetros não podem ser nulos
-        //TODO quantidade não pode ser menor que 1
-	}
+        Objects.requireNonNull(produto);
+        if (quantidade <= 0) {
+            throw new IllegalArgumentException();
+        }
+        this.produto = produto;
+        this.quantidade = quantidade;
+    }
 
     public Produto getProduto() {
-    	return this.produto;
+        return this.produto;
     }
 
     public int getQuantidade() {
-    	return this.quantidade;
+        return this.quantidade;
     }
 
     public BigDecimal getValorTotal() {
-        //TODO retornar produto.valor * quantidade
-        return null;
+        return this.produto.getValor()
+                .multiply(new BigDecimal(quantidade));
     }
 
-	public void adicionarQuantidade(int quantidade) {
-        //TODO quantidade não pode ser menor que 1
-        //TODO Deve somar o valor atual da quantidade com o valor passado
-	}
+    public void adicionarQuantidade(int quantidade) {
+        if (quantidade <= 0) {
+            throw new IllegalArgumentException();
+        }
+        this.quantidade += quantidade;
+    }
 
     public void subtrairQuantidade(int quantidade) {
-        //TODO quantidade não pode ser menor que 1
-        //TODO Deve subtrair o valor atual da quantidade com o valor passado
+        if (quantidade <= 0) {
+            throw new IllegalArgumentException();
+        }
+        if (quantidade >= this.quantidade) {
+            throw new IllegalArgumentException();
+        }
+        this.quantidade -= quantidade;
     }
 
     @Override
