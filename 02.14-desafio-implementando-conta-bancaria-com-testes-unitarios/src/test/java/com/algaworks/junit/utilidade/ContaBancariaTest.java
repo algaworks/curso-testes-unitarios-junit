@@ -18,13 +18,13 @@ class ContaBancariaTest {
     @Test
     void saqueComValorZeradoFalha() {
         ContaBancaria conta = new ContaBancaria(BigDecimal.TEN);
-        assertThrows(RuntimeException.class, ()-> conta.saque(BigDecimal.ZERO));
+        assertThrows(IllegalArgumentException.class, ()-> conta.saque(BigDecimal.ZERO));
     }
 
     @Test
     void saqueComValorNegativoFalha() {
         ContaBancaria conta = new ContaBancaria(BigDecimal.TEN);
-        assertThrows(RuntimeException.class, ()-> conta.saque(new BigDecimal("-10.0")));
+        assertThrows(IllegalArgumentException.class, ()-> conta.saque(new BigDecimal("-10.0")));
     }
 
     @Test
@@ -56,13 +56,13 @@ class ContaBancariaTest {
     @Test
     void depositoComValorZeradoFalha() {
         ContaBancaria conta = new ContaBancaria(BigDecimal.TEN);
-        assertThrows(RuntimeException.class, ()-> conta.deposito(BigDecimal.ZERO));
+        assertThrows(IllegalArgumentException.class, ()-> conta.deposito(BigDecimal.ZERO));
     }
 
     @Test
     void depositoComValorNegativoFalha() {
         ContaBancaria conta = new ContaBancaria(BigDecimal.TEN);
-        assertThrows(RuntimeException.class, ()-> conta.deposito(new BigDecimal("-10.0")));
+        assertThrows(IllegalArgumentException.class, ()-> conta.deposito(new BigDecimal("-10.0")));
     }
 
     @Test
